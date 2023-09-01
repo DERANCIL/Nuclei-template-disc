@@ -1,0 +1,24 @@
+id: GitLab-Registration-token-Finder
+
+info:
+  name: GitLab Registration Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, registration-token
+  description: |
+    This module searches for GitLab Registration Tokens in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "_token=(.{20})&count=10"

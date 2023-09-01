@@ -1,0 +1,24 @@
+id: Stripe-API-Key-Finder
+
+info:
+  name: Stripe API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, stripe-api-key
+  description: |
+    This module searches for Stripe API Keys in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "sk_live_[0-9a-zA-Z]{24}"

@@ -1,0 +1,24 @@
+id: Mailgun-API-Key-Finder
+
+info:
+  name: Mailgun API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, mailgun-api-key
+  description: |
+    This module searches for Mailgun API Keys in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "key-[0-9a-zA-Z]{32}"

@@ -1,0 +1,24 @@
+id: Picatic-API-Key-Finder
+
+info:
+  name: Picatic API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, picatic-api-key
+  description: |
+    This module searches for Picatic API Keys in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "sk_live_[0-9a-z]{32}"

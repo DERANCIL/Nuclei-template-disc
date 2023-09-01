@@ -1,0 +1,23 @@
+id: google-api-key-finder
+
+info:
+  name: Google API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery,api-key,google
+  description: |
+    This template is designed to find Google API keys in a web page's response.
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/Getsugatensho404"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "AIza[0-9A-Za-z\\-_]{35}"

@@ -1,0 +1,23 @@
+id: Amazon-MWS-Auth_Token
+
+info:
+  name: Amazon AWS Secret Key ID Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery,api-key
+  description: |
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/Getsugatensho404"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"

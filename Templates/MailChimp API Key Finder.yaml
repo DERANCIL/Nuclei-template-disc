@@ -1,0 +1,23 @@
+id: MailChimp-API-Key-Finder
+
+info:
+  name: MailChimp API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, mailchimp-api-key
+  description: |
+    This module searches for MailChimp API Keys in web content.
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "[0-9a-f]{32}-us[0-9]{1,2}"

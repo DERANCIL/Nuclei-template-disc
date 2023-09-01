@@ -1,0 +1,23 @@
+id: jquery-version-finder
+
+info:
+  name: jQuery Version Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, version
+  description: |
+    This template is designed to find jQuery version numbers in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - '{{BaseURL}}'
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - 'jQuery v(\d+\.\d+(\.\d+)?)'

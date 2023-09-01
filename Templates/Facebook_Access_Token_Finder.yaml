@@ -1,0 +1,25 @@
+id: Facebook-Access-Token-Finder
+
+
+info:
+  name: Facebook Access Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, access-token
+  description: |
+    This module searches for Facebook Access Tokens in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "EAACEdEose0cBA[0-9A-Za-z]+"

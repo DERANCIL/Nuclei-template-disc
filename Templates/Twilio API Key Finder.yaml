@@ -1,0 +1,26 @@
+id: Twilio-API-Key-Finder
+
+info:
+  name: Twilio API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, twilio-api-key
+  description: |
+    This module searches for Twilio API Keys in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "SK[0-9a-fA-F]{32}"
+          - "(?i)twitter(.{0,20})?[0-9a-z]{35,44}"
+          - "(?i)twitter(.{0,20})?['\"][0-9a-z]{35,44}"

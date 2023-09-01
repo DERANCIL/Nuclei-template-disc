@@ -1,0 +1,22 @@
+id: source-code-local-path-finder
+
+info:
+  name: Source Code Local Path Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, local-path-disclosure
+  description: |
+    This template is designed to find possible local path disclosures in the source code of a web page.
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "(\\/usr|\\/root|\\/var|\\/etc|\\/home)(\\/[^\\\"\']*\\/)(?:[^\\\"\']*\\/){1,3}"

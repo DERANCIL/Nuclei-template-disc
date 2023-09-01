@@ -1,0 +1,27 @@
+id: wp_press_version-finder
+
+info:
+  name: wp_Version Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, version
+  description: |
+    This template is designed to find version numbers in files or pages.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "generator"
+          - "wp-content"
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "Version\\s*(\\d+\\.\\d+(\\.\\d+)?)"

@@ -1,0 +1,23 @@
+id: Slack-Token-Finder
+
+info:
+  name: Slack Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, slack-token
+  description: |
+    This module searches for Slack Tokens in web content.
+
+  metadata:
+    max-request: 2
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "xox[baprs]-([0-9a-zA-Z]{10,48})?"

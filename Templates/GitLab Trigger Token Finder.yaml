@@ -1,0 +1,24 @@
+id: GitLab-Trigger-Token-Finder
+
+info:
+  name: GitLab Trigger Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, trigger-token
+  description: |
+    This module searches for GitLab Trigger Tokens in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/Getsugatensho404"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "glptt-[0-9a-f]{40}"

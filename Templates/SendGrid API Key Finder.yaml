@@ -1,0 +1,25 @@
+id: SendGridApiKeyFinder
+
+info:
+  name: SendGrid API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, sendgrid-api-key
+  description: |
+    This module searches for SendGrid API Keys in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"  # Base URL for the web content.
+      - "{{BaseURL}}/Getsugatensho404"  # Additional endpoint for exploration.
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "SG\\.[a-zA-Z0-9]{22}\\.[a-zA-Z0-9]{43}"
+      

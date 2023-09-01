@@ -1,0 +1,23 @@
+id: GitLab-Runner-Registration-Token-Finder
+
+info:
+  name: GitLab Runner Registration Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, runner-registration-token
+  description: |
+    This module searches for GitLab Runner Registration Tokens in web content.
+
+  metadata:
+    max-request: 2
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "GR1348941[0-9a-zA-Z\\-_]{20}"

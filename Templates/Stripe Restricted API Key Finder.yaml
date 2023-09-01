@@ -1,0 +1,24 @@
+id: Stripe-Restricted-API-Key-Finder
+
+info:
+  name: Stripe Restricted API Key Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, stripe-restricted-api-key
+  description: |
+    This module searches for Stripe Restricted API Keys in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "rk_live_[0-9a-zA-Z]{24}"

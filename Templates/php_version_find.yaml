@@ -1,0 +1,25 @@
+id: php-version-finder
+
+info:
+  name: PHP Version Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, version
+  description: |
+    This template is designed to find PHP version numbers in HTTP response headers or page content.
+
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "PHP/([0-9]+\\.[0-9]+\\.[0-9]+)"

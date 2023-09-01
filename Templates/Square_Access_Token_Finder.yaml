@@ -1,0 +1,25 @@
+id: Square-Access-Token-Finder
+
+info:
+  name: Square Access Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, square-access-token
+  description: |
+    This module searches for Square Access Tokens in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "sq0atp-[0-9A-Za-z\\-_]{22}"

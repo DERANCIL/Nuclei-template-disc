@@ -1,0 +1,24 @@
+id: Google-OAuth-Access-Token-Finder
+
+info:
+  name: Google OAuth Access Token Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, google-oauth
+  description: |
+    This module searches for Google OAuth Access Tokens in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "ya29\\.[0-9A-Za-z\\-_]+"

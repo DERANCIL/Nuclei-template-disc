@@ -1,0 +1,24 @@
+id: Google-YouTube-OAuth-Finder
+
+info:
+  name: Google YouTube OAuth Finder
+  author: DERANCIL
+  severity: low
+  tags: discovery, google-youtube-oauth
+  description: |
+    This module searches for Google YouTube OAuth credentials in web content.
+
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/example-page"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com"

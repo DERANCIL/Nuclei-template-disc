@@ -1,0 +1,22 @@
+id: email-finder
+
+info:
+  name: Email Finder
+  author: [Your Name]
+  severity: low
+  tags: discovery,email
+  description: |
+    This template is designed to find email addresses in a web page's response.
+  metadata:
+    max-request: 2
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
